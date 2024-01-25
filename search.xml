@@ -61,6 +61,25 @@
     
     
     <entry>
+      <title>hexo框架教程指路</title>
+      <link href="/2024/01/22/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%82%E8%80%83/"/>
+      <url>/2024/01/22/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%82%E8%80%83/</url>
+      
+        <content type="html"><![CDATA[<p><strong>&#x76EE;&#x7684;&#xFF1A;</strong></p><ul><li><p>&#x8FD9;&#x7BC7;&#x4E3B;&#x8981;&#x662F;&#x4E3A;hexo&#x6846;&#x67B6;&#x7684;&#x6559;&#x7A0B;&#x6307;&#x8DEF;</p></li><li><p>&#x6309;&#x7167;&#x76F8;&#x540C;&#x914D;&#x7F6E;&#x90E8;&#x7F72;&#x597D;&#x7684;&#x535A;&#x5BA2;&#x51FA;&#x4E86;&#x95EE;&#x9898;&#xFF0C;&#x4E5F;&#x65B9;&#x4FBF;&#x91CD;&#x65B0;&#x590D;&#x539F;</p></li></ul><p><strong>&#x7EC6;&#x8282;</strong><br>1. &#x642D;&#x5EFA;&#x6559;&#x7A0B;<br>* <a href="https://hexo.io/docs/github-pages.html">hexo&#x5B98;&#x65B9;&#x6559;&#x7A0B;</a></p><pre><code>* [hexo&#x4E2D;&#x6587;&#x6559;&#x7A0B;](https://blog.csdn.net/sinat_37781304/article/details/82729029)  </code></pre><ol start="2" type="1"><li><p>&#x4E3B;&#x9898;&#x5B9A;&#x5236;</p><ul><li><p><a href="https://blog.csdn.net/Reinhart_L/article/details/122587975">theme-cactus&#x4E2D;&#x6587;&#x6559;&#x7A0B;</a></p></li><li><p><a href="https://github.com/gabithume/cactus-light">&#x672C;&#x4EBA;&#x73B0;&#x5728;&#x7528;&#x7684;&#x7B80;&#x5316;&#x7248;theme-cactus</a></p></li></ul></li><li><p>&#x63D2;&#x4EF6;&#x652F;&#x6301;</p><p>3.1 git&#x90E8;&#x7F72;&#x63D2;&#x4EF6;</p><ul><li><a href="https://github.com/hexojs/hexo-deployer-git">hexo-deployer-git</a></li></ul><p>3.2 LaTeX&#x516C;&#x5F0F;&#x652F;&#x6301;&#x63D2;&#x4EF6;</p><ul><li><p><a href="https://github.com/hexojs/hexo-renderer-pandoc">hexo-renderer-pandoc</a></p></li><li><p><a href="https://github.com/next-theme/hexo-filter-mathjax">hexo-filter-mathjax</a></p></li></ul><p>3.3 &#x56FE;&#x7247;&#x652F;&#x6301;&#x63D2;&#x4EF6;</p><ul><li><a href="https://github.com/xcodebuild/hexo-asset-image">hexo-asset-image</a></li></ul><p>3.4 &#x4E2D;&#x6587;&#x6BB5;&#x843D;&#x7684;&#x82F1;&#x6587;&#x7F8E;&#x5316;</p><ul><li><a href="https://github.com/cerallin/hexo-filter-text-autospace">hexo-filter-text-autospace</a></li></ul><p>3.5 &#x6027;&#x80FD;&#x4F18;&#x5316;&#x63D2;&#x4EF6;</p><ul><li><a href="https://github.com/hexojs/hexo-clean-css">hexo-clean-css</a>&#x2003;&#x6CA1;&#x7528;&#x8FC7;</li></ul></li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 博客框架 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello world</title>
       <link href="/2024/01/22/hello-world/"/>
       <url>/2024/01/22/hello-world/</url>
