@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="zh"><head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="任务
+ 跟随指导，实现简单日志读取
+ 理解重点
+ commit object
+ 简化版&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ImplementGit:log">
+<meta property="og:url" content="http://example.com/2024/01/25/ImplementGit-log/index.html">
+<meta property="og:site_name" content="unzip's test">
+<meta property="og:description" content="任务
+ 跟随指导，实现简单日志读取
+ 理解重点
+ commit object
+ 简化版&amp;#x">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-25T01:19:51.000Z">
+<meta property="article:modified_time" content="2024-01-25T08:16:06.894Z">
+<meta property="article:author" content="unzip">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>ImplementGit:log</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+<!-- hexo injector head_end start --><style>
+body hanla:after {
+    content: ' ';
+    display: inline;
+    font-family: inherit;
+    font-size: 0.45em;
+}
+
+html code hanla,
+html pre hanla,
+html kbd hanla,
+html samp hanla,
+html ruby hanla,
+html .tag-list-item hanla {
+    display: none;
+}
+
+html ol > hanla,
+html ul > hanla {
+    display: none;
+}
+</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/unzip-zs">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2024/01/24/ImplementGit%20hash-object%20and%20cat-file/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$(&quot;#i-next&quot;).toggle();" onmouseout="$(&quot;#i-next&quot;).toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$(&quot;#i-top&quot;).toggle();" onmouseout="$(&quot;#i-top&quot;).toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$(&quot;#i-share&quot;).toggle();" onmouseout="$(&quot;#i-share&quot;).toggle();" onclick="$(&quot;#share&quot;).toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2024/01/25/ImplementGit-log/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2024/01/25/ImplementGit-log/&amp;text=ImplementGit:log"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2024/01/25/ImplementGit-log/&amp;title=ImplementGit:log"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2024/01/25/ImplementGit-log/&amp;is_video=false&amp;description=ImplementGit:log"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ImplementGit:log&amp;body=Check out this article: http://example.com/2024/01/25/ImplementGit-log/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2024/01/25/ImplementGit-log/&amp;title=ImplementGit:log"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2024/01/25/ImplementGit-log/&amp;title=ImplementGit:log"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2024/01/25/ImplementGit-log/&amp;title=ImplementGit:log"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2024/01/25/ImplementGit-log/&amp;title=ImplementGit:log"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2024/01/25/ImplementGit-log/&amp;name=ImplementGit:log&amp;description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.</span> <span class="toc-text">任务<hanla></hanla></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E8%A7%A3%E9%87%8D%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">理解重点<hanla></hanla></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#commit-object"><span class="toc-number">2.1.</span> <span class="toc-text">commit object</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="toc-number">2.2.</span> <span class="toc-text">实现细节<hanla></hanla></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E4%BB%BB%E5%8A%A1"><span class="toc-number">3.</span> <span class="toc-text">编码任务：</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        ImplementGit:log
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="name">unzip's test</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2024-01-25T01:19:51.000Z" itemprop="datePublished">2024-01-25</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/git/" rel="tag">git</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="任务"><hanla></hanla>任务</h2>
+<p>跟随<a target="_blank" rel="noopener" href="https://wyag.thb.lt/">指导</a>，实现简单日志读取</p>
+<h2 id="理解重点">理解重点</h2>
+<h3 id="commit-object">commit object</h3>
+<p>简化版的<hanla></hanla>mail messages format<hanla></hanla>示例： </p><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">tree 29ff16c9c14e2652b22f8b78bb08a5a07930c147</span><br><span class="line">parent 206941306e8a8af65b66eaaaea388a7ae24d49a0</span><br><span class="line">author Thibault Polge &lt;thibault@thb.lt&gt; 1527025023 +0200</span><br><span class="line">committer Thibault Polge &lt;thibault@thb.lt&gt; 1527025044 +0200</span><br><span class="line">gpgsig -----BEGIN PGP SIGNATURE-----</span><br><span class="line"></span><br><span class="line"> iQIzBAABCAAdFiEExwXquOM8bWb4Q2zVGxM2FxoLkGQFAlsEjZQACgkQGxM2FxoL</span><br><span class="line"> kGQdcBAAqPP+ln4nGDd2gETXjvOpOxLzIMEw4A9gU6CzWzm+oB8mEIKyaH0UFIPh</span><br><span class="line"> rNUZ1j7/ZGFNeBDtT55LPdPIQw4KKlcf6kC8MPWP3qSu3xHqx12C5zyai2duFZUU</span><br><span class="line"> wqOt9iCFCscFQYqKs3xsHI+ncQb+PGjVZA8+jPw7nrPIkeSXQV2aZb1E68wa2YIL</span><br><span class="line"> 3eYgTUKz34cB6tAq9YwHnZpyPx8UJCZGkshpJmgtZ3mCbtQaO17LoihnqPn4UOMr</span><br><span class="line"> V75R/7FjSuPLS8NaZF4wfi52btXMSxO/u7GuoJkzJscP3p4qtwe6Rl9dc1XC8P7k</span><br><span class="line"> NIbGZ5Yg5cEPcfmhgXFOhQZkD0yxcJqBUcoFpnp2vu5XJl2E5I/quIyVxUXi6O6c</span><br><span class="line"> /obspcvace4wy8uO0bdVhc4nJ+Rla4InVSJaUaBeiHTW8kReSFYyMmDCzLjGIu1q</span><br><span class="line"> doU61OM3Zv1ptsLu3gUE6GU27iWYj2RWN3e3HE4Sbd89IFwLXNdSuM0ifDLZk7AQ</span><br><span class="line"> WBhRhipCCgZhkj9g2NEk7jRVslti1NdN5zoQLaJNqSwO1MtxTmJ15Ksk3QP6kfLB</span><br><span class="line"> Q52UWybBzpaP9HEd4XnR+HuQ4k2K0ns2KgNImsNvIyFwbpMUyUWLMPimaV1DWUXo</span><br><span class="line"> 5SBjDB/V/W2JBFR+XKHFJeFwYhj7DD/ocsGr4ZMx/lgc8rjIBkI=</span><br><span class="line"> =lgTX</span><br><span class="line"> -----END PGP SIGNATURE-----</span><br><span class="line"></span><br><span class="line">Create first draft</span><br></pre></td></tr></tbody></table></figure> 其中：<p></p>
+<ul>
+<li><p>tree<hanla></hanla>是<hanla></hanla>tree object<hanla></hanla>的引用，它将<hanla></hanla>blob
+ID<hanla></hanla>映射到<hanla></hanla>git<hanla></hanla>文件系统的指定位置，并记录<hanla></hanla>work
+tree<hanla></hanla>的状态,<hanla></hanla>它是<hanla></hanla>commit<hanla></hanla>的实际内容，包括源文件本事及其去向</p></li>
+<li><p>parent<hanla></hanla>是<hanla></hanla>the parent of this commit<hanla></hanla>的引用，它可能会重复<hanla></hanla>(merge
+commits)，也可能不存在<hanla></hanla>(first commit)</p></li>
+<li><p>author<hanla></hanla>和<hanla></hanla>committer<hanla></hanla>的身份和职责并不一致，分开是合理的</p></li>
+<li><p>gpgsig 为该对象的<hanla></hanla><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/PGP">PGP<hanla></hanla>签名</a></p></li>
+</ul>
+<h3 id="实现细节">实现细节</h3>
+<ul>
+<li><p>该对象需要一个解析器，在指导中将其定义为<hanla></hanla>kvlm_parse()，它提到原因：<br>
+The name of the function we’re about to create, kvlm_parse(), may be
+confusing: it isn’t called commit_parse() because tags have the very
+same format, so we’ll use it for both objects types. I use KVLM to mean
+“Key-Value List with Message”.</p></li>
+<li><p>在<hanla></hanla>kvlm_parse()<hanla></hanla>的代码中使用了<hanla></hanla>OrderedDict——<em>有序的<hanla></hanla>dictionary/hashmap</em>，来保证字段有相同的顺序，这基于以下规则：</p>
+<ol type="1">
+<li>the same name will always refer to the same object.</li>
+<li>the same object will always be referred by the same name.</li>
+</ol>
+<p>如果不对字段的顺序进行维护，如<hanla></hanla>tree、parent<hanla></hanla>字段将会出现两种顺序，这两种顺序将会产生不同的<hanla></hanla>SHA-1<hanla></hanla>哈希值，这意味着出现了两个<hanla></hanla>commit
+object，但它们的内容是一样的，违反了第二条规则</p></li>
+<li><p>指导实现的<hanla></hanla>log<hanla></hanla>远比<hanla></hanla>git<hanla></hanla>提供的要简单，并且没有实现日志显示，代码通过<hanla></hanla>dump
+Graphviz data,<hanla></hanla>并调用<hanla></hanla>dot<hanla></hanla>命令呈现日志（如果您不知道如何使用
+Graphviz，只需将原始输出粘贴到<a target="_blank" rel="noopener" href="https://dreampuf.github.io/GraphvizOnline/#digraph%20G%20%7B%0A%0A%20%20subgraph%20cluster_0%20%7B%0A%20%20%20%20style%3Dfilled%3B%0A%20%20%20%20color%3Dlightgrey%3B%0A%20%20%20%20node%20%5Bstyle%3Dfilled%2Ccolor%3Dwhite%5D%3B%0A%20%20%20%20a0%20-%3E%20a1%20-%3E%20a2%20-%3E%20a3%3B%0A%20%20%20%20label%20%3D%20%22process%20%231%22%3B%0A%20%20%7D%0A%0A%20%20subgraph%20cluster_1%20%7B%0A%20%20%20%20node%20%5Bstyle%3Dfilled%5D%3B%0A%20%20%20%20b0%20-%3E%20b1%20-%3E%20b2%20-%3E%20b3%3B%0A%20%20%20%20label%20%3D%20%22process%20%232%22%3B%0A%20%20%20%20color%3Dblue%0A%20%20%7D%0A%20%20start%20-%3E%20a0%3B%0A%20%20start%20-%3E%20b0%3B%0A%20%20a1%20-%3E%20b3%3B%0A%20%20b2%20-%3E%20a3%3B%0A%20%20a3%20-%3E%20a0%3B%0A%20%20a3%20-%3E%20end%3B%0A%20%20b3%20-%3E%20end%3B%0A%0A%20%20start%20%5Bshape%3DMdiamond%5D%3B%0A%20%20end%20%5Bshape%3DMsquare%5D%3B%0A%7D">此站点</a>。如果链接已失效，请在您最喜欢的搜索引擎中查找<hanla></hanla>“graphviz
+online”）</p></li>
+</ul>
+<h2 id="编码任务">编码任务：</h2>
+<ul>
+<li>Parsing commits</li>
+<li>The Commit object</li>
+<li>The log command</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/unzip-zs">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.</span> <span class="toc-text">任务<hanla></hanla></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E8%A7%A3%E9%87%8D%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">理解重点<hanla></hanla></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#commit-object"><span class="toc-number">2.1.</span> <span class="toc-text">commit object</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="toc-number">2.2.</span> <span class="toc-text">实现细节<hanla></hanla></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E4%BB%BB%E5%8A%A1"><span class="toc-number">3.</span> <span class="toc-text">编码任务：</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2024/01/25/ImplementGit-log/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2024/01/25/ImplementGit-log/&amp;text=ImplementGit:log"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2024/01/25/ImplementGit-log/&amp;title=ImplementGit:log"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2024/01/25/ImplementGit-log/&amp;is_video=false&amp;description=ImplementGit:log"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ImplementGit:log&amp;body=Check out this article: http://example.com/2024/01/25/ImplementGit-log/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2024/01/25/ImplementGit-log/&amp;title=ImplementGit:log"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2024/01/25/ImplementGit-log/&amp;title=ImplementGit:log"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2024/01/25/ImplementGit-log/&amp;title=ImplementGit:log"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2024/01/25/ImplementGit-log/&amp;title=ImplementGit:log"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2024/01/25/ImplementGit-log/&amp;name=ImplementGit:log&amp;description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$(&quot;#toc-footer&quot;).toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$(&quot;#share-footer&quot;).toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$(&quot;#nav-footer&quot;).toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright © 2024 unzip
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/unzip-zs">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body></html><!-- styles -->
