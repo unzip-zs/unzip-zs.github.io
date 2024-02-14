@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>异常kswapd0进程占用cpu过高</title>
+      <link href="/2024/02/14/%E5%BC%82%E5%B8%B8kswapd0%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8cpu%E8%BF%87%E9%AB%98/"/>
+      <url>/2024/02/14/%E5%BC%82%E5%B8%B8kswapd0%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8cpu%E8%BF%87%E9%AB%98/</url>
+      
+        <content type="html"><![CDATA[<h3 id="&#x8D77;&#x56E0;">&#x8D77;&#x56E0;</h3><p>&#x2003;&#x2003;&#x963F;&#x91CC;&#x4E91;&#x4EE5;&#x8FDC;&#x7A0B;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x73B0;&#x6316;&#x77FF;&#x7A0B;&#x5E8F;&#x4E3A;&#x7531;&#x53D1;&#x9001;&#x77ED;&#x4FE1;&#x544A;&#x8B66;&#xFF0C;&#x7ECF;&#x67E5;&#x9A8C;&#xFF0C;&#x53D1;&#x73B0;&#x76F8;&#x5173;&#x6076;&#x610F;&#x7A0B;&#x5E8F;&#x3002;</p><h3 id="&#x73B0;&#x573A;&#x60C5;&#x51B5;">&#x73B0;&#x573A;&#x60C5;&#x51B5;</h3><p><strong>&#x622A;&#x56FE;</strong><br><img src="/2024/02/14/%E5%BC%82%E5%B8%B8kswapd0%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8cpu%E8%BF%87%E9%AB%98/cpu&#x5360;&#x7528;&#x622A;&#x56FE;.png" alt="cpu&#x5360;&#x7528;&#x622A;&#x56FE;"></p><p><strong>&#x63CF;&#x8FF0;</strong><br>&#x5F02;&#x5E38;kswapd0&#x8FDB;&#x7A0B;&#x5360;&#x7528;cpu&#x8FC7;&#x9AD8;&#xFF0C;&#x5E76;&#x4E14;&#x670D;&#x52A1;&#x5668;&#x4E0E;&#x53EF;&#x7591;ip179.43.139.84&#x5EFA;&#x7ACB;&#x94FE;&#x63A5;</p><p><strong>&#x53C2;&#x8003;</strong><br>* <a href="https://zhuanlan.zhihu.com/p/465487828">&#x77E5;&#x4E4E;</a><br>* <a href="https://blog.csdn.net/qq_43686863/article/details/129505798">csdn</a></p><h3 id="&#x6E05;&#x7406;">&#x6E05;&#x7406;</h3><p><strong>&#x6E05;&#x7406;&#x53EF;&#x7591;&#x7684;crontab&#x5B9A;&#x65F6;&#x8BA1;&#x5212;&#xFF0C;&#x9632;&#x6B62;&#x91CD;&#x65B0;&#x542F;&#x52A8;</strong><br><strong>&#x68C0;&#x67E5;&#x5E76;&#x6E05;&#x7406;&#x611F;&#x67D3;&#x7528;&#x6237;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x53EF;&#x7591;ssh&#x516C;&#x94A5;&#xFF0C;&#x9632;&#x6B62;&#x9ED1;&#x5BA2;&#x91CD;&#x65B0;&#x767B;&#x5165;</strong><br><strong>&#x5220;&#x9664;&#x6076;&#x610F;&#x6587;&#x4EF6;</strong><br><strong>&#x5173;&#x95ED;&#x6076;&#x610F;&#x8FDB;&#x7A0B;</strong></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Ubuntu 计算机病毒 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>计算机组成原理:计算机系统概述</title>
       <link href="/2024/01/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/"/>
       <url>/2024/01/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</url>
