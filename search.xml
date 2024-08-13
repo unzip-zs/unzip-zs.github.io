@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>git从入门到入土</title>
+      <link href="/2024/08/13/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/"/>
+      <url>/2024/08/13/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/</url>
+      
+        <content type="html"><![CDATA[<h1 id="git&#x7684;&#x7B80;&#x5355;&#x64CD;&#x4F5C;">git&#x7684;&#x7B80;&#x5355;&#x64CD;&#x4F5C;</h1><blockquote><p>&#x6307;&#x57FA;&#x7840;&#x7684;git&#x64CD;&#x4F5C;&#x547D;&#x4EE4;&#xFF0C;&#x65B9;&#x4FBF;&#x56DE;&#x5FC6;</p></blockquote><h1 id="git&#x7684;&#x590D;&#x6742;&#x64CD;&#x4F5C;">git&#x7684;&#x590D;&#x6742;&#x64CD;&#x4F5C;</h1><blockquote><p>&#x6307;&#x4E00;&#x4E9B;&#x6B63;&#x5E38;&#x751F;&#x4EA7;&#x4E2D;&#x5E38;&#x7528;&#x7684;git&#x64CD;&#x4F5C;&#x96C6; * Commit message &#x548C; Changelog&#x7F16;&#x5199;&#x89C4;&#x8303; &#x539F;&#x6587;&#x53C2;&#x8003;&#x962E;&#x8001;&#x5E08;&#x7684;&#x535A;&#x5BA2;&#xFF0C;<a href="https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html">&#x70B9;&#x51FB;&#x524D;&#x5F80;&#x539F;&#x6587;</a>* &#x8981;&#x70B9;&#xFF1A; * commit message * <strong>&#x57FA;&#x672C;&#x8981;&#x6C42;</strong>&#x5E94;&#x8BE5;&#x6E05;&#x6670;&#x660E;&#x5730;&#x8BF4;&#x660E;&#x672C;&#x6B21;&#x63D0;&#x4EA4;&#x7684;&#x76EE;&#x7684; * <strong>&#x683C;&#x5F0F;</strong> &#x5305;&#x62EC;Header&#xFF0C;Body&#x548C; Footer&#x90E8;&#x5206; * &#x9075;&#x5FAA;&#x5E94;&#x7528;&#x5E7F;&#x6CDB;&#x7684;Angular&#x89C4;&#x8303;<br>* <strong>&#x7F16;&#x5199;&#x63D2;&#x4EF6;&#xFF1A;</strong> Commitizen * &#x4F7F;&#x7528;<code>git cz</code>&#x4EE3;&#x66FF;<code>git commit</code></p></blockquote><pre><code>  * Change log    * Change Log &#x662F;&#x53D1;&#x5E03;&#x65B0;&#x7248;&#x672C;&#x65F6;&#xFF0C;&#x7528;&#x6765;&#x8BF4;&#x660E;&#x4E0E;&#x4E0A;&#x4E00;&#x4E2A;&#x7248;&#x672C;&#x5DEE;&#x5F02;&#x7684;&#x6587;&#x6863;    * **&#x81EA;&#x52A8;&#x751F;&#x6210;&#x63D2;&#x4EF6;&#xFF0C;&#x8981;&#x6C42;commit&#x6EE1;&#x8DB3;Angular&#x89C4;&#x8303;&#xFF1A;** conventional-changelog</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>vscode中的文档增强插件</title>
       <link href="/2024/08/05/vscode%E4%B8%AD%E7%9A%84%E6%96%87%E6%A1%A3%E5%A2%9E%E5%BC%BA%E6%8F%92%E4%BB%B6/"/>
       <url>/2024/08/05/vscode%E4%B8%AD%E7%9A%84%E6%96%87%E6%A1%A3%E5%A2%9E%E5%BC%BA%E6%8F%92%E4%BB%B6/</url>
